@@ -15,10 +15,10 @@
                     @endif
                     
                     @foreach($errors->all() as $message)
-                        <p class="has-error">{{ $message }}</p>
+                        <p class="has-error alert alert-danger">{{ $message }}</p>
                     @endforeach
-
-                    <h4>Hello and welcome to our conference registration system, {{ Auth::user()->name }}</h4>
+                    
+                    <h4>Hello and welcome to BandIT, {{ Auth::user()->name }}!</h4>
                 </div>
             </div>
         </div>

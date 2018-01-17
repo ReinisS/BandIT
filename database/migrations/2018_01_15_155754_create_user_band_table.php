@@ -6,26 +6,21 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUserBandTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
-        Schema::create('user_band', function (Blueprint $table) {
+        Schema::create('user_bands', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('band_id')->unsigned();
+            $table->foreign('band_id')->references('id')->on('bands');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('user_band');
+        Schema::dropIfExists('user_bands');
     }
 }

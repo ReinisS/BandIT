@@ -15,8 +15,11 @@
 //Route::resource('conference', 'ConferenceController', ['except' => ['edit', 'update', 'destroy']]);
 
 Auth::routes();
+Route::get('/', 'EventController@index');
+Route::get('home', 'HomeController@index');
+Route::get('event/{id}', 'EventController@show')->where('id', '[0-9]+');
+Route::get('admin', 'AdminController');
 
-Route::get('/', 'HomeController@index');
 /*Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', 'AdminController');
 Route::resource('country', 'CountryController', ['only' => ['create', 'store']]);

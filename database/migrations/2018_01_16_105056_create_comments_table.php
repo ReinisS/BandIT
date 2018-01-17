@@ -4,23 +4,24 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBandEventTable extends Migration
+class CreateCommentsTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('band_events', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('band_id')->unsigned();
-            $table->foreign('band_id')->references('id')->on('bands');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
+            $table->text('content');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('band_events');
+        Schema::dropIfExists('comments');
     }
 }
