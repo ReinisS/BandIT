@@ -15,7 +15,9 @@ class CreateAttendanceTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events');
-            $table->integer('attendance')->unsigned()->default(0)->change(); // 0 - unknown, 1 - attending, 2 - maybe attending, 3- not attending
+            $table->integer('band_id')->unsigned();
+            $table->foreign('band_id')->references('id')->on('bands');
+            $table->integer('attendance')->unsigned(); // 0 - unknown, 1 - attending, 2 - maybe attending, 3- not attending
             $table->timestamps();
         });
     }

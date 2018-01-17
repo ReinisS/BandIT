@@ -11,26 +11,19 @@
 |
 */
 
-//Route::get('/', 'ConferenceController@index');
-//Route::resource('conference', 'ConferenceController', ['except' => ['edit', 'update', 'destroy']]);
-
 Auth::routes();
 Route::get('/', 'EventController@index');
 Route::get('home', 'HomeController@index');
+Route::get('admin', 'AdminController');
+Route::get('band', 'BandController@index');
+Route::get('band/create', 'BandController@create');
+Route::post('band/create', 'BandController@store');
+Route::get('band/{id}', 'BandController@show')->where('id', '[0-9]+');
+Route::get('band/edit/{id}', 'BandController@edit')->where('id', '[0-9]+');
 Route::get('event/{id}', 'EventController@show')->where('id', '[0-9]+');
-Route::get('admin', 'AdminController');
-
-/*Route::get('/home', 'HomeController@index')->name('home');
-Route::get('admin', 'AdminController');
-Route::resource('country', 'CountryController', ['only' => ['create', 'store']]);
-Route::resource('city', 'CityController', ['only' => ['create', 'store']]);
-Route::resource('discount', 'DiscountController', ['only' => ['create', 'store']]);
-Route::get('countries/conferences', 'ConferenceController@indexByCountry');
-Route::get('conferences/search','ConferenceController@getSearch');
-Route::post('conferences/search','ConferenceController@postSearch');
-
-Route::get('registration','RegistrationController@index');
-Route::get('registration/{id}','RegistrationController@getRegistration')->where('id', '[0-9]+');
-Route::post('registration', 'RegistrationController@store');
-Route::get('registration/{conf_id}/{registration_id}','RegistrationController@registrationInfo')->where('conf_id', '[0-9]+')->where('registration_id', '[0-9]+');
-*/
+Route::post('event/{id}', 'EventController@comment')->where('id', '[0-9]+');
+Route::get('public_events', 'EventController@index');
+Route::get('event/create', 'EventController@create');
+Route::post('event/create', 'EventController@store');
+Route::get('band/{band_id}/event/{event_id}/attendance', 'BandController@attendance')->where('band_id', '[0-9]+')->where('event_id', '[0-9]+');
+Route::post('band/{band_id}/event/{event_id}/attendance', 'BandController@updateattendance')->where('band_id', '[0-9]+')->where('event_id', '[0-9]+');

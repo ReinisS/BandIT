@@ -39,10 +39,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="/">PLACEHOLDER</a></li>
-                        <li><a href="/">PLACEHOLDER</a></li>
-                        <li><a href="/">PLACEHOLDER</a></li>
-                        <li><a href="/">PLACEHOLDER</a></li>
+                        <li><a href="/band">Bands</a></li>
+                        <li><a href="/public_events">Public events</a></li>
+                        <li><a href="/private_events">Your events</a></li>
                         @if ( !Auth::guest() && Auth::user()->isAdmin() )
                             <li><a href="/admin">Admin</a></li>
                         @endif
