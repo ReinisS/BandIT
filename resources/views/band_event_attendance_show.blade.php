@@ -29,9 +29,14 @@
                 </div>
                 <div class="panel-body">
                     <div><h2>Attendance:</h2></div>
+                    @if (session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                    <div class="panel panel-default">
                     @if (count($attendances) > 0)
-                        @foreach ($attendances as $a)
-                        <div>
+                        <div class="panel-body">
                             <div class="col-md-2 text-center"></div>
                             <div class="col-md-2 text-center">Unknown</div>
                             <div class="col-md-2 text-center">Attending</div>
@@ -39,10 +44,12 @@
                             <div class="col-md-2 text-center">Not attending</div>
                             <div class="col-md-2 text-center">Submit</div>
                         </div>
-                        <div>
+                        
+                        @foreach ($attendances as $a)
+                        <div class="panel-body">
                             @if ($a['user_id'] === Auth::user()->id)
                                 <div>
-                                {!! Form::open(['action' => array('BandController@updateattendance', $event->id, $band->id), 'class' => 'form-horizontal']) !!}
+                                {!! Form::open(['action' => array('BandController@updateattendance', $band->id, $event->id), 'class' => 'form-horizontal']) !!}
                                 <div class="col-md-2 text-right">{{ $a['user_name'] }}</div>
                                 @for ($i = 0; $i < 4; $i++)
                                     @if ($i === $a['attendance'])
@@ -64,17 +71,19 @@
                                     @if ($i === $a['attendance'])
                                         <div class="col-md-2 text-center">&#10004;</div>
                                     @else
-                                        <div class="col-md-2 text-center"></div>
+                                        <div class="col-md-2 text-center">&nbsp;</div>
                                     @endif
                                 @endfor
-                                <div class="col-md-2 text-center"></div>
+                                <div class="col-md-2 text-center">&nbsp;</div>
                                 </div>
                             @endif
+                            
                         </div>
                         @endforeach
                     @else
                         <div>No attendances!</div>
                     @endif
+                    </div>
                 </div>
             </div>
         </div>

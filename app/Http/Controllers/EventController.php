@@ -139,4 +139,20 @@ class EventController extends Controller
         
     }
     
+    public function delete($id)
+    {
+        
+        if (Auth::user()->isAdmin())
+        {
+            Attendance::where('event_id', '=', $id)->delete();
+            Band_event::where('event_id', '=', $id)->delete();
+            User_event::where('event_id', '=', $id)->delete();
+            Comment::where('event_id', '=', $id)->delete();
+            Event::where('id', '=', $id)->delete();
+            return redirect('home')->with('status', 'Event deleted!');
+        }
+        else { return redirect('home')->withErrors('You do not have the permission to delete events!'); }
+        
+    }
+    
 }

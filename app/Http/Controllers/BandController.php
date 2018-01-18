@@ -150,15 +150,14 @@ class BandController extends Controller
     {
         
         $data = $request->all();
-        //dd($data);
-        $attendance = Attendance::where('band_id', '=', $band_id)
+        $attendance = Attendance::where('user_id', '=', Auth::user()->id)
+                ->where('band_id', '=', $band_id)
                 ->where('event_id', '=', $event_id)
-                ->where('user_id', '=', Auth::user()->id)
                 ->get()->first();
         $attendance->attendance = $data['attendance'][0];
         $attendance->save();
         
-        return redirect()->action('BandController@attendance', array($band_id, $event_id));
+        return redirect()->action('BandController@attendance', array($band_id, $event_id))->with('message', 'Attendance updated!');
         
     }
     

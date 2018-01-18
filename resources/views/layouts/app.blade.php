@@ -49,6 +49,22 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {{ App::getLocale() }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach (Config::get('app.languages') as $language)
+                                @if ($language != App::getLocale())
+                                <li>
+                                    <a href="{{ url('language', $language) }}">{{ $language }}</a>
+                                </li>
+                                @endif
+                                @endforeach
+                            </ul>
+                        </li>
+                        
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>

@@ -27,3 +27,5 @@ Route::get('event/create', 'EventController@create');
 Route::post('event/create', 'EventController@store');
 Route::get('band/{band_id}/event/{event_id}/attendance', 'BandController@attendance')->where('band_id', '[0-9]+')->where('event_id', '[0-9]+');
 Route::post('band/{band_id}/event/{event_id}/attendance', 'BandController@updateattendance')->where('band_id', '[0-9]+')->where('event_id', '[0-9]+');
+Route::get('event/delete/{id}', 'EventController@delete')->where('id', '[0-9]+');
+Route::get('language/{language}', 'LanguageController@index');

@@ -28,6 +28,9 @@
                     </div>
                 </div>
                 <div class="panel-body">
+                    <h3><a href="{{ url('event/delete', $event->id) }}">Delete event</a></h3>
+                </div>
+                <div class="panel-body">
                 @if ($bands->count() > 0)
                     <div><h3>Bands participating in this event:</h3></div>
                     @foreach ($bands as $band)

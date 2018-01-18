@@ -77,8 +77,10 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
-
-    'locale' => 'en',
+    
+    'languages' => ['lv', 'en'],
+    
+    'locale' => 'lv',
 
     /*
     |--------------------------------------------------------------------------

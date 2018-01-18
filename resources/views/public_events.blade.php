@@ -34,6 +34,9 @@
                         @endforeach
                     </div>
                     @endif
+                    <div class="panel-group">
+                        <h2><a href='{{ url("event/create") }}'>Create new event</a></h2>
+                    </div>
                 </div>
             </div>
         </div>
