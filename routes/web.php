@@ -23,9 +23,12 @@ Route::get('band/edit/{id}', 'BandController@edit')->where('id', '[0-9]+');
 Route::get('event/{id}', 'EventController@show')->where('id', '[0-9]+');
 Route::post('event/{id}', 'EventController@comment')->where('id', '[0-9]+');
 Route::get('public_events', 'EventController@index');
+Route::get('your_events', 'EventController@userevents');
 Route::get('event/create', 'EventController@create');
 Route::post('event/create', 'EventController@store');
 Route::get('band/{band_id}/event/{event_id}/attendance', 'BandController@attendance')->where('band_id', '[0-9]+')->where('event_id', '[0-9]+');
 Route::post('band/{band_id}/event/{event_id}/attendance', 'BandController@updateattendance')->where('band_id', '[0-9]+')->where('event_id', '[0-9]+');
 Route::get('event/delete/{id}', 'EventController@delete')->where('id', '[0-9]+');
-Route::get('language/{language}', 'LanguageController@index');
+Route::get('lang/{lang}', function ($locale) {
+    return redirect('/')->withCookie(cookie('language', $locale));
+});
